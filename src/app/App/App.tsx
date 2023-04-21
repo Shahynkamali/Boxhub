@@ -7,7 +7,7 @@ const App: FC = () => {
   return (
     <AxiosProvider>
       <div className={styles.app}>
-        <h2>Hello World</h2>
+        <h2 className="text-red-500">Hello World</h2>
         <OrdersScreen />
       </div>
     </AxiosProvider>
