@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*", "./dist/*", ""],
+      "shared/*": ["src/app/shared/*"],
+      "modules/*": ["src/app/modules/*"],
+      "mocks/*": ["src/api-mocks/*"],
+      "assets/*": ["src/api-assets/*"],
+      "components": ["src/app/components/index.ts"],
+      "screens/*": ["src/app/screens/*"],
+      "constant": ["src/app/shared/constant/index.ts"],
+      "context": ["src/app/shared/context/index.ts"],
+      "hooks": ["src/app/shared/hooks/index.ts"],
+      "utilities": ["src/app/shared/utilities/index.ts"],
+ 
+    },
+  },
+  "include": ["src", "vite.config.ts", "vitest.config.ts", "vitest-setup.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
