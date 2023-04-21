@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { AxiosProvider } from "context";
-import styles from "./App.module.scss";
 import { OrdersScreen } from "../screens/OrdersScreen";
+import styles from "./App.module.scss";
 
 const App: FC = () => {
   return (
