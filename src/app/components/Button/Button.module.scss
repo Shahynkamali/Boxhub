@@ -1,0 +1,76 @@
+.root {
+  @apply relative;
+  @apply rounded-sm text-center;
+  @apply text-base whitespace-nowrap font-bold;
+  @apply transition duration-300 ease-in-out;
+  @apply focus:outline-2 focus:outline-offset-2;
+  @apply border-2;
+
+  .button {
+    @apply flex items-center justify-center w-full;
+  }
+
+  &.fullWidth {
+    @apply w-full;
+  }
+
+  &.disabled {
+    @apply bg-gray-400 text-white cursor-not-allowed;
+
+    &.clean {
+      @apply bg-transparent text-gray-400;
+    }
+
+    &.outlined {
+      @apply text-gray-400 bg-gray-50;
+    }
+  }
+
+  &.primary {
+    @apply text-white bg-primary hover:bg-primary-dark active:bg-primary-dark focus:bg-primary-dark;
+
+    &.outlined {
+      @apply text-primary bg-secondary hover:bg-secondary-light hover:text-white;
+    }
+  }
+
+  &.secondary {
+    @apply bg-secondary text-white hover:bg-secondary-light active:bg-secondary-light focus:outline-secondary-light;
+
+    &.outlined {
+      @apply text-secondary bg-white hover:bg-secondary-light hover:text-white;
+    }
+  }
+
+  &.small {
+    @apply text-sm leading-4;
+    @apply px-4 py-2.5;
+
+    .icon {
+      @apply w-4;
+    }
+  }
+
+  &.medium {
+    @apply text-base;
+    @apply px-4 py-2.5;
+
+    .icon {
+      @apply w-6;
+    }
+  }
+
+  &.hasChildren {
+    .icon {
+      @apply mr-2;
+    }
+  }
+
+  .icon {
+    @apply w-5;
+  }
+
+  .spinner {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+}
