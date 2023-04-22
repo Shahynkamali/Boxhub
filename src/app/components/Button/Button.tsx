@@ -1,18 +1,18 @@
 import type { FC, HTMLProps, MouseEvent, ReactNode, Ref } from "react";
-import type { THEME_TYPES } from "constant";
+import type { BUTTONS_TYPES } from "constant";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { THEMES } from "constant";
-import { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./Button.module.scss";
-import classnames from "classnames";
+import { BUTTONS } from "constant";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { forwardRef } from "react";
+import classnames from "classnames";
+import styles from "./Button.module.scss";
 
 export type ButtonSizes = "small" | "medium";
 type ButtonType = "button" | "submit" | "reset" | undefined;
 
 interface ButtonProps<T = HTMLButtonElement> extends HTMLProps<T> {
-  theme: THEME_TYPES;
+  theme: BUTTONS_TYPES;
   isLoading: boolean;
   isDisabled: boolean;
   icon: IconDefinition;
@@ -37,7 +37,7 @@ const Button: FC<Props> = forwardRef(
     {
       isLoading,
       isDisabled,
-      theme = THEMES.PRIMARY,
+      theme = BUTTONS.PRIMARY,
       icon,
       size = "medium",
       children,
@@ -132,7 +132,7 @@ Button.displayName = "Button";
 
 Button.defaultProps = {
   size: "medium",
-  theme: THEMES.PRIMARY,
+  theme: BUTTONS.PRIMARY,
   type: "button",
 };
 

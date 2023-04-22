@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import { Button } from "./Button";
-import { THEMES } from "constant";
+import { BUTTONS } from "constant";
 
 export default {
   title: "Components/Button",
@@ -9,7 +9,7 @@ export default {
     isLoading: false,
     isOutlined: false,
     isDisabled: false,
-    theme: THEMES.PRIMARY,
+    theme: BUTTONS.PRIMARY,
     size: "medium",
   },
   argTypes: {
@@ -48,7 +48,7 @@ export default {
 
 export const Primary: StoryFn<typeof Button> = (args) => (
   <div>
-    <Button {...args} theme={THEMES.PRIMARY}>
+    <Button {...args} theme={BUTTONS.PRIMARY}>
       primary
     </Button>
   </div>
@@ -56,7 +56,7 @@ export const Primary: StoryFn<typeof Button> = (args) => (
 
 export const Secondary: StoryFn<typeof Button> = (args) => (
   <div>
-    <Button {...args} theme={THEMES.SECONDARY}>
+    <Button {...args} theme={BUTTONS.SECONDARY}>
       primary
     </Button>
   </div>

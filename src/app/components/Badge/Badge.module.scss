@@ -1,0 +1,49 @@
+.root {
+  @apply flex items-center overflow-hidden;
+  @apply px-2 py-2.5 w-max text-white;
+  @apply rounded-full border-2;
+  @apply text-xs font-bold whitespace-nowrap leading-none uppercase;
+
+  &.primary {
+    @apply bg-primary text-secondary border-primary;
+
+    &.inverted {
+      @apply border-primary text-secondary bg-white;
+    }
+  }
+
+  &.secondary {
+    @apply bg-secondary text-white border-secondary;
+
+    &.inverted {
+      @apply border-secondary bg-white text-secondary;
+    }
+  }
+
+  &.success {
+    @apply bg-green-600 border-green-600;
+
+    &.inverted {
+      @apply bg-green-100;
+      @apply text-green-700;
+    }
+  }
+
+  &.warning {
+    @apply bg-orange-600 border-orange-600;
+
+    &.inverted {
+      @apply bg-orange-100;
+      @apply text-orange-600;
+    }
+  }
+
+  &.error {
+    @apply bg-red-600 border-red-600;
+
+    &.inverted {
+      @apply bg-red-100;
+      @apply text-red-700;
+    }
+  }
+}
