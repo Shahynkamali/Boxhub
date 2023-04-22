@@ -11,6 +11,14 @@ const BADGES = {
   WARNING: "warning",
 } as const;
 
+const CONTAINERS = {
+  EXTRA_SMALL: "extraSmall",
+  SMALL: "small",
+  MEDIUM: "medium",
+  LARGE: "large",
+  FULL: "full",
+} as const;
+
 const COLUMNS = {
   ONE: "one",
   TWO: "two",
@@ -42,12 +50,14 @@ type ValueOf<T> = T[keyof T];
 
 export { BADGES };
 export { BUTTONS };
+export { CONTAINERS };
 export { COLUMNS };
 export { SKELETONS };
 export { TEXTS };
 
 export type BADGES_TYPES = ValueOf<typeof BADGES>;
 export type BUTTONS_TYPES = ValueOf<typeof BUTTONS>;
+export type CONTAINERS_TYPES = ValueOf<typeof CONTAINERS>;
 export type COLUMNS_TYPES = ValueOf<typeof COLUMNS>;
 export type SKELETONS_TYPES = ValueOf<typeof SKELETONS>;
 export type TEXTS_TYPES = ValueOf<typeof TEXTS>;

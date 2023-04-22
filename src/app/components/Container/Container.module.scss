@@ -1,0 +1,23 @@
+.root {
+  @apply mx-auto w-full;
+
+  &.extraSmall {
+    @apply max-w-4xl;
+  }
+
+  &.small {
+    @apply max-w-5xl;
+  }
+
+  &.medium {
+    @apply max-w-6xl;
+  }
+
+  &.large {
+    @apply max-w-7xl;
+  }
+
+  &.full {
+    @apply max-w-full;
+  }
+}

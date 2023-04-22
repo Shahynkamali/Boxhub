@@ -1,15 +1,11 @@
 import type { FC } from "react";
 import { AxiosProvider } from "context";
-import { OrdersScreen } from "../screens/OrdersScreen";
-import styles from "./App.module.scss";
+import { OrdersScreen } from "@/app/screens/OrdersScreen";
 
 const App: FC = () => {
   return (
     <AxiosProvider>
-      <div className={styles.app}>
-        <h2 className="text-red-500">Hello World</h2>
-        <OrdersScreen />
-      </div>
+      <OrdersScreen />
     </AxiosProvider>
   );
 };
