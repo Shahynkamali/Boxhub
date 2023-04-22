@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useOrdersQuery } from "./useOrdersQuery";
-import { Box, Container, Text } from "@/app/components";
-import { TEXTS } from "@/app/shared/constant";
+import { Box, Column, Columns, Container, Text } from "@/app/components";
+import { COLUMNS, TEXTS } from "@/app/shared/constant";
 import { OrderLineItem } from "./OrderLineItem";
 import { ORDER } from "@/api-mocks/fixtures";
 
@@ -18,7 +18,13 @@ const OrdersScreen: FC = () => {
 
   return (
     <Container>
-      <Text type={TEXTS.H1}>Orders</Text>
+      <Columns>
+        <Column columnWidth={COLUMNS.SIX}>
+          <Text className="text-center" type={TEXTS.H1}>
+            Orders
+          </Text>
+        </Column>
+      </Columns>
       <Box>{renderOrders()}</Box>
     </Container>
   );

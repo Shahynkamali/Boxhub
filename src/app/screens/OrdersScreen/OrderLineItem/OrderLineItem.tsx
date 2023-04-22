@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -7,11 +8,12 @@ import {
   Column,
   Columns,
   Text,
+  Image,
+  Button,
 } from "@/app/components";
-import { useState } from "react";
 import { ORDER } from "@/api-mocks/fixtures";
 import { BADGES, COLUMNS, TEXTS } from "@/app/shared/constant";
-
+import styles from "./OrderLineItem.module.scss";
 interface Props {
   order: ORDER;
 }
@@ -22,6 +24,8 @@ const mapOrderStatus = {
   pending: BADGES.PRIMARY,
 } as const;
 
+const fallBackImage = "https://source.unsplash.com/random/50×50/?container";
+
 const OrderLineItem: FC<Props> = ({ order }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,36 +35,55 @@ const OrderLineItem: FC<Props> = ({ order }) => {
     <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
       <AccordionHeader>
         <Columns>
-          <Column className="mt-3 relative">
+          <Column columnWidth={COLUMNS.ONE}>
+            <Image src={order.photo} fallback={fallBackImage} />
+          </Column>
+          <Column className={styles.title}>
             <Text isMarginless isBold type={TEXTS.H2}>
               {order.customer}
             </Text>
-            <Text type={TEXTS.H4}>{order.type}</Text>
-            <Text type={TEXTS.FOOTNOTE}>SKU: {order.sku}</Text>
+            <Text type={TEXTS.FOOTNOTE}>Ordered: {order.created}</Text>
             <Badge
-              className="absolute top-1/2 transform -translate-y-1/2 transition-all right-8"
+              className={styles.orderStatus}
               theme={mapOrderStatus[order.status]}
             >
               {order.status}
             </Badge>
+            <Columns isMarginless className={styles.buttonContainer}>
+              <Column className="pl-0 pb-0" columnWidth={COLUMNS.SMALL}>
+                <Button>View Map</Button>
+              </Column>
+            </Columns>
           </Column>
         </Columns>
       </AccordionHeader>
       <AccordionContent>
-        <Columns>
-          <Column columnWidth={COLUMNS.SMALL}>
-            <Text isBold type={TEXTS.H5}>
-              Date of order creation
+        <Columns isMarginless>
+          <Column className={styles.textContainer}>
+            <Text isBold type="h5">
+              Condition:
             </Text>
-            <Text isBold type={TEXTS.H5}>
-              Size
+            <Text className="ml-4">{order.condition}</Text>
+          </Column>
+          <Column className={styles.textContainer}>
+            <Text isBold type="h5">
+              Type:
             </Text>
-            <Text>{order.size}</Text>
-            <Text>{order.created}</Text>
-            <Text isBold type={TEXTS.H5}>
-              Condition
+            <Text className="ml-4">{order.type}</Text>
+          </Column>
+        </Columns>
+        <Columns isMarginless>
+          <Column className={styles.textContainer}>
+            <Text isBold type="h5">
+              SKU:
             </Text>
-            <Text>{order.condition}</Text>
+            <Text className="ml-4">{order.sku}</Text>
+          </Column>
+          <Column className={styles.textContainer}>
+            <Text isBold type="h5">
+              Size:
+            </Text>
+            <Text className="ml-4">{order.size}</Text>
           </Column>
         </Columns>
       </AccordionContent>

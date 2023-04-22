@@ -6,6 +6,7 @@ export * from "./Column";
 export * from "./Columns";
 export * from "./Container";
 export * from "./Dropdown";
+export * from "./Image";
 export * from "./ProgressBar";
 export * from "./Skeleton";
 export * from "./Text";

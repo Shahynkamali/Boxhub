@@ -1,0 +1,15 @@
+.title {
+  @apply mt-3 relative;
+}
+
+.orderStatus {
+  @apply absolute top-1/2 transform -translate-y-1/2 transition-all right-8;
+}
+
+.buttonContainer {
+  @apply h-full flex items-end;
+}
+
+.textContainer {
+  @apply flex flex-row items-center;
+}
