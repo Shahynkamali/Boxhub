@@ -13,6 +13,11 @@ export default {
           light: "#234960",
         },
       },
+      borderRadius: {
+        theme: {
+          DEFAULT: "4px",
+        },
+      },
     },
   },
   plugins: [],

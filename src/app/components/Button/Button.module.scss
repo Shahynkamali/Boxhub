@@ -1,10 +1,9 @@
 .root {
-  @apply relative;
-  @apply rounded-sm text-center;
+  @apply relative px-5 py-2.5 text-center;
   @apply text-base whitespace-nowrap font-bold;
   @apply transition duration-300 ease-in-out;
   @apply focus:outline-2 focus:outline-offset-2;
-  @apply border-2;
+  @apply border-2 rounded-[4px];
 
   .button {
     @apply flex items-center justify-center w-full;
@@ -17,25 +16,24 @@
   &.disabled {
     @apply bg-gray-400 text-white cursor-not-allowed;
 
-    &.clean {
-      @apply bg-transparent text-gray-400;
-    }
-
     &.outlined {
       @apply text-gray-400 bg-gray-50;
     }
   }
 
   &.primary {
-    @apply text-white bg-primary hover:bg-primary-dark active:bg-primary-dark focus:bg-primary-dark;
+    @apply text-secondary bg-primary hover:bg-primary-dark active:bg-primary-dark;
+    @apply focus:bg-primary-dark border-primary hover:text-secondary-light;
+    @apply active:bg-primary-dark focus:bg-primary-dark;
+    @apply border-primary hover:text-secondary-light  hover:bg-primary-dark;
 
     &.outlined {
-      @apply text-primary bg-secondary hover:bg-secondary-light hover:text-white;
+      @apply text-secondary bg-white hover:bg-secondary-light hover:text-white border-secondary;
     }
   }
 
   &.secondary {
-    @apply bg-secondary text-white hover:bg-secondary-light active:bg-secondary-light focus:outline-secondary-light;
+    @apply bg-secondary text-white hover:bg-secondary-light active:bg-secondary-light focus:outline-secondary-light border-secondary;
 
     &.outlined {
       @apply text-secondary bg-white hover:bg-secondary-light hover:text-white;
