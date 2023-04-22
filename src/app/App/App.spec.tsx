@@ -1,12 +1,14 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import { renderWithProviders } from "utilities";
+import { renderWithProviders, waitForLoading } from "utilities";
 import { App } from "./App";
 
 describe("App", () => {
-  test("renders", () => {
+  test("renders", async () => {
     renderWithProviders(<App />);
 
-    expect(screen.getByRole("heading")).toBeInTheDocument();
+    await waitForLoading("loading");
+
+    expect(screen.getByText("Orders")).toBeInTheDocument();
   });
 });

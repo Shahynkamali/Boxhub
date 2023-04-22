@@ -6,11 +6,12 @@ import { TEXTS } from "@/app/shared/constant";
 const OrdersScreen: FC = () => {
   const { data, isLoading, error } = useOrdersQuery();
 
-  if (isLoading) return <div>loading</div>;
+  if (isLoading) return <div>loading...</div>;
   if (!!error) return <div>oeps!</div>;
 
   return (
     <Container>
+      <Text type={TEXTS.H1}>Orders</Text>
       {data?.data?.map((order) => (
         <Box key={order.id}>
           <Columns>
