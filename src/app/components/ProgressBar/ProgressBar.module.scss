@@ -1,0 +1,7 @@
+.root {
+  @apply w-full mt-0 mb-4 mx-auto bg-gray-200 h-1;
+
+  > .bar {
+    @apply h-1 bg-secondary;
+  }
+}

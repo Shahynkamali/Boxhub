@@ -6,19 +6,19 @@
   }
 
   &.one {
-    @apply w-full md:w-1/6 mdlg:w-full;
+    @apply w-full md:w-1/6;
   }
   &.two {
-    @apply w-full md:w-2/6 mdlg:w-full;
+    @apply w-full md:w-2/6;
   }
   &.three {
-    @apply w-full md:w-3/6 mdlg:w-full;
+    @apply w-full md:w-3/6;
   }
   &.four {
-    @apply w-full md:w-4/6 mdlg:w-full;
+    @apply w-full md:w-4/6;
   }
   &.five {
-    @apply w-full md:w-5/6 mdlg:w-full;
+    @apply w-full md:w-5/6;
   }
   &.six {
     @apply w-full;

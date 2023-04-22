@@ -1,0 +1,39 @@
+.root {
+  display: inherit;
+  @apply rounded-lg w-40 flex items-center justify-between;
+  @apply text-base whitespace-nowrap font-bold;
+  @apply transition duration-300 ease-in-out;
+  @apply px-4 font-sans;
+
+  &.padding {
+    @apply py-3;
+  }
+
+  &.paddingNoChildren {
+    @apply py-4;
+  }
+
+  &.primary {
+    @apply text-secondary bg-primary hover:bg-primary-dark active:bg-primary-dark focus:ring-primary-dark;
+  }
+
+  &.secondary {
+    @apply bg-secondary text-white hover:bg-secondary-light active:bg-secondary-light focus:outline-secondary-light border-secondary;
+  }
+
+  &.outlined {
+    @apply border-secondary text-secondary bg-white hover:bg-secondary-light hover:text-white border-2;
+  }
+
+  &.disabled {
+    @apply bg-gray-400 text-white cursor-not-allowed hover:bg-gray-400 border-gray-400 shadow-none;
+  }
+
+  &.fullWidth {
+    @apply w-full;
+  }
+
+  .icon {
+    @apply -mr-1 ml-2 h-4 w-4;
+  }
+}
