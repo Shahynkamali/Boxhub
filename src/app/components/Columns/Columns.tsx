@@ -8,7 +8,6 @@ interface Props extends HTMLProps<HTMLDivElement> {
   isWrapping?: boolean;
   isWrappingReverse?: boolean;
   isStackingOnMobile?: boolean;
-  isResponsive?: boolean;
   isMarginPreserved?: boolean;
 }
 
@@ -42,7 +41,6 @@ const Columns: FC<Props> = ({
 
 Columns.defaultProps = {
   isMarginPreserved: false,
-  isResponsive: true,
   isStackingOnMobile: true,
   isMarginless: false,
   isWrapping: false,

@@ -1,7 +1,9 @@
 import type { FC } from "react";
 import { useOrdersQuery } from "./useOrdersQuery";
-import { Badge, Box, Column, Columns, Container, Text } from "@/app/components";
+import { Box, Container, Text } from "@/app/components";
 import { TEXTS } from "@/app/shared/constant";
+import { OrderLineItem } from "./OrderLineItem";
+import { ORDER } from "@/api-mocks/fixtures";
 
 const OrdersScreen: FC = () => {
   const { data, isLoading, error } = useOrdersQuery();
@@ -9,30 +11,15 @@ const OrdersScreen: FC = () => {
   if (isLoading) return <div>loading...</div>;
   if (!!error) return <div>oeps!</div>;
 
+  const renderOrder = (order: ORDER) => (
+    <OrderLineItem order={order} key={order.id} />
+  );
+  const renderOrders = () => data?.data.map(renderOrder);
+
   return (
     <Container>
       <Text type={TEXTS.H1}>Orders</Text>
-      {data?.data?.map((order) => (
-        <Box key={order.id}>
-          <Columns>
-            <Column columnWidth="small">
-              <div className="w-12 h-12 bg-red-400">
-                <img src={order.photo} alt="" />
-              </div>
-            </Column>
-            <Column>
-              <Text isBold type={TEXTS.H2}>
-                {order.customer}
-              </Text>
-              <Text type={TEXTS.H3}>{order.type}</Text>
-              <Text type={TEXTS.H4}>{order.condition}</Text>
-            </Column>
-            <Column>
-              <Badge>{order.status}</Badge>
-            </Column>
-          </Columns>
-        </Box>
-      ))}
+      <Box>{renderOrders()}</Box>
     </Container>
   );
 };

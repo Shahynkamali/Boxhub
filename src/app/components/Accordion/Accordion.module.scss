@@ -2,10 +2,10 @@
   @apply w-full;
 
   &.borderBottom {
-    @apply border-b border-gray-200;
+    @apply border-b border-secondary;
   }
 
   &.borderTop {
-    @apply border-t border-gray-200;
+    @apply border-t border-secondary;
   }
 }

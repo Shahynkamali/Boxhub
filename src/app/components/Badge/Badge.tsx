@@ -4,7 +4,7 @@ import { BADGES } from "constant";
 import classNames from "classnames";
 import styles from "./Badge.module.scss";
 
-interface Props extends HTMLProps<HTMLDivElement> {
+interface Props extends HTMLProps<HTMLSpanElement> {
   children: ReactNode;
   theme?: BADGES_TYPES;
   invertTheme?: boolean;
@@ -25,9 +25,9 @@ const Badge: FC<Props> = ({
   );
 
   return (
-    <div {...rest} className={css} aria-hidden="true">
+    <span {...rest} className={css} aria-hidden="true">
       {children}
-    </div>
+    </span>
   );
 };
 

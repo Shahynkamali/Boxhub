@@ -1,5 +1,5 @@
 .root {
-  @apply flex items-center overflow-hidden;
+  @apply inline-flex items-center overflow-hidden;
   @apply px-2 py-2.5 w-max text-white;
   @apply rounded-full border-2;
   @apply text-xs font-bold whitespace-nowrap leading-none uppercase;
