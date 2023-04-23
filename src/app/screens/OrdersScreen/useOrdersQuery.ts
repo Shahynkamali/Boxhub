@@ -11,11 +11,7 @@ import { API_RESOURCE } from "constant";
 import { buildSearchParams } from "utilities";
 import { useAxiosContext } from "context";
 
-type Data = ORDER[];
-
-interface Response {
-  data: Data;
-}
+type Response = ORDER[];
 
 interface QueryState {
   isLoading: boolean;

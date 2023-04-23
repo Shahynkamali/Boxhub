@@ -2,7 +2,7 @@
   @apply w-full;
 
   &.borderBottom {
-    @apply border-b border-secondary;
+    @apply border-b border-secondary last-of-type:border-none;
   }
 
   &.borderTop {

@@ -16,7 +16,6 @@ import { BADGES, COLUMNS, TEXTS } from "@/app/shared/constant";
 import styles from "./OrderLineItem.module.scss";
 interface Props {
   order: ORDER;
-  hasBorderBottom?: boolean;
 }
 
 const mapOrderStatus = {
@@ -27,34 +26,32 @@ const mapOrderStatus = {
 
 const fallBackImage = "https://source.unsplash.com/random/50×50/?container";
 
-const OrderLineItem: FC<Props> = ({ order, hasBorderBottom }) => {
+const OrderLineItem: FC<Props> = ({
+  order: { status, photo, type, customer, created, condition, sku, size },
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSetIsOpen = () => setIsOpen((prevState) => !prevState);
 
   return (
-    <Accordion
-      hasBorderBottom={!hasBorderBottom}
-      isOpen={isOpen}
-      setIsOpen={handleSetIsOpen}
-    >
+    <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
       <AccordionHeader>
         <Columns>
           <Column columnWidth={COLUMNS.ONE}>
-            <Image src={order.photo} fallback={fallBackImage} />
+            <Image src={photo} fallback={fallBackImage} />
           </Column>
           <Column className={styles.title}>
             <Text isMarginless isBold type={TEXTS.H2}>
-              {order.customer}
+              {customer}
             </Text>
             <Text type={TEXTS.FOOTNOTE}>
-              Ordered: {new Date(order.created).toLocaleDateString()}
+              Ordered: {new Date(created).toLocaleDateString()}
             </Text>
             <Badge
               className={styles.orderStatus}
-              theme={mapOrderStatus[order.status]}
+              theme={mapOrderStatus[status]}
             >
-              {order.status}
+              {status}
             </Badge>
             <Columns isMarginless className={styles.buttonContainer}>
               <Column className="pl-0 pb-0" columnWidth={COLUMNS.SMALL}>
@@ -70,13 +67,13 @@ const OrderLineItem: FC<Props> = ({ order, hasBorderBottom }) => {
             <Text isBold type="h5">
               Condition:
             </Text>
-            <Text className="ml-4">{order.condition}</Text>
+            <Text className="ml-4">{condition}</Text>
           </Column>
           <Column className={styles.textContainer}>
             <Text isBold type="h5">
               Type:
             </Text>
-            <Text className="ml-4">{order.type}</Text>
+            <Text className="ml-4">{type}</Text>
           </Column>
         </Columns>
         <Columns isMarginless>
@@ -84,13 +81,13 @@ const OrderLineItem: FC<Props> = ({ order, hasBorderBottom }) => {
             <Text isBold type="h5">
               SKU:
             </Text>
-            <Text className="ml-4">{order.sku}</Text>
+            <Text className="ml-4">{sku}</Text>
           </Column>
           <Column className={styles.textContainer}>
             <Text isBold type="h5">
               Size:
             </Text>
-            <Text className="ml-4">{order.size}</Text>
+            <Text className="ml-4">{size}</Text>
           </Column>
         </Columns>
       </AccordionContent>
