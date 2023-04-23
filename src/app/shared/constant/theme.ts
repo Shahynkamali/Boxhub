@@ -29,6 +29,12 @@ const COLUMNS = {
   SMALL: "small",
 } as const;
 
+const DIALOGS = {
+  SMALL: "small",
+  MEDIUM: "medium",
+  LARGE: "large",
+};
+
 const SKELETONS = {
   SMALL: "small",
   MEDIUM: "medium",
@@ -54,10 +60,12 @@ export { CONTAINERS };
 export { COLUMNS };
 export { SKELETONS };
 export { TEXTS };
+export { DIALOGS };
 
 export type BADGES_TYPES = ValueOf<typeof BADGES>;
 export type BUTTONS_TYPES = ValueOf<typeof BUTTONS>;
 export type CONTAINERS_TYPES = ValueOf<typeof CONTAINERS>;
 export type COLUMNS_TYPES = ValueOf<typeof COLUMNS>;
+export type DIALOGS_TYPES = ValueOf<typeof DIALOGS>;
 export type SKELETONS_TYPES = ValueOf<typeof SKELETONS>;
 export type TEXTS_TYPES = ValueOf<typeof TEXTS>;

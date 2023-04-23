@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, MouseEvent } from "react";
 import { useState } from "react";
 import {
   Accordion,
@@ -14,6 +14,7 @@ import {
 import { ORDER } from "@/api-mocks/fixtures";
 import { BADGES, COLUMNS, TEXTS } from "@/app/shared/constant";
 import styles from "./OrderLineItem.module.scss";
+import { MapDialog } from "./MapDialog";
 interface Props {
   order: ORDER;
 }
@@ -30,68 +31,79 @@ const OrderLineItem: FC<Props> = ({
   order: { status, photo, type, customer, created, condition, sku, size },
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setIsModalOpen((prevState) => !prevState);
+  };
 
   const handleSetIsOpen = () => setIsOpen((prevState) => !prevState);
 
   return (
-    <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
-      <AccordionHeader>
-        <Columns>
-          <Column columnWidth={COLUMNS.ONE}>
-            <Image src={photo} fallback={fallBackImage} />
-          </Column>
-          <Column className={styles.title}>
-            <Text isMarginless isBold type={TEXTS.H2}>
-              {customer}
-            </Text>
-            <Text type={TEXTS.FOOTNOTE}>
-              Ordered: {new Date(created).toLocaleDateString()}
-            </Text>
-            <Badge
-              className={styles.orderStatus}
-              theme={mapOrderStatus[status]}
-            >
-              {status}
-            </Badge>
-            <Columns isMarginless className={styles.buttonContainer}>
-              <Column className="pl-0 pb-0" columnWidth={COLUMNS.SMALL}>
-                <Button>View Map</Button>
-              </Column>
-            </Columns>
-          </Column>
-        </Columns>
-      </AccordionHeader>
-      <AccordionContent>
-        <Columns isMarginless>
-          <Column className={styles.textContainer}>
-            <Text isBold type="h5">
-              Condition:
-            </Text>
-            <Text className="ml-4">{condition}</Text>
-          </Column>
-          <Column className={styles.textContainer}>
-            <Text isBold type="h5">
-              Type:
-            </Text>
-            <Text className="ml-4">{type}</Text>
-          </Column>
-        </Columns>
-        <Columns isMarginless>
-          <Column className={styles.textContainer}>
-            <Text isBold type="h5">
-              SKU:
-            </Text>
-            <Text className="ml-4">{sku}</Text>
-          </Column>
-          <Column className={styles.textContainer}>
-            <Text isBold type="h5">
-              Size:
-            </Text>
-            <Text className="ml-4">{size}</Text>
-          </Column>
-        </Columns>
-      </AccordionContent>
-    </Accordion>
+    <>
+      <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
+        <AccordionHeader>
+          <Columns>
+            <Column columnWidth={COLUMNS.ONE}>
+              <Image src={photo} fallback={fallBackImage} />
+            </Column>
+            <Column className={styles.title}>
+              <Text isMarginless isBold type={TEXTS.H2}>
+                {customer}
+              </Text>
+              <Text type={TEXTS.FOOTNOTE}>
+                Ordered: {new Date(created).toLocaleDateString()}
+              </Text>
+              <Badge
+                className={styles.orderStatus}
+                theme={mapOrderStatus[status]}
+              >
+                {status}
+              </Badge>
+              <Columns isMarginless className={styles.buttonContainer}>
+                <Column className="pl-0 pb-0" columnWidth={COLUMNS.SMALL}>
+                  <Button onClick={handleOpenModal}>View Map</Button>
+                </Column>
+              </Columns>
+            </Column>
+          </Columns>
+        </AccordionHeader>
+        <AccordionContent>
+          <Columns isMarginless>
+            <Column className={styles.textContainer}>
+              <Text isBold type="h5">
+                Condition:
+              </Text>
+              <Text className="ml-4">{condition}</Text>
+            </Column>
+            <Column className={styles.textContainer}>
+              <Text isBold type="h5">
+                Type:
+              </Text>
+              <Text className="ml-4">{type}</Text>
+            </Column>
+          </Columns>
+          <Columns isMarginless>
+            <Column className={styles.textContainer}>
+              <Text isBold type="h5">
+                SKU:
+              </Text>
+              <Text className="ml-4">{sku}</Text>
+            </Column>
+            <Column className={styles.textContainer}>
+              <Text isBold type="h5">
+                Size:
+              </Text>
+              <Text className="ml-4">{size}</Text>
+            </Column>
+          </Columns>
+        </AccordionContent>
+      </Accordion>
+      <MapDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 };
 
