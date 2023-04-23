@@ -16,6 +16,7 @@ import { BADGES, COLUMNS, TEXTS } from "@/app/shared/constant";
 import styles from "./OrderLineItem.module.scss";
 interface Props {
   order: ORDER;
+  hasBorderBottom?: boolean;
 }
 
 const mapOrderStatus = {
@@ -26,13 +27,17 @@ const mapOrderStatus = {
 
 const fallBackImage = "https://source.unsplash.com/random/50×50/?container";
 
-const OrderLineItem: FC<Props> = ({ order }) => {
+const OrderLineItem: FC<Props> = ({ order, hasBorderBottom }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSetIsOpen = () => setIsOpen((prevState) => !prevState);
 
   return (
-    <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
+    <Accordion
+      hasBorderBottom={!hasBorderBottom}
+      isOpen={isOpen}
+      setIsOpen={handleSetIsOpen}
+    >
       <AccordionHeader>
         <Columns>
           <Column columnWidth={COLUMNS.ONE}>

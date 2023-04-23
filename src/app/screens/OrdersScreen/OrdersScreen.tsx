@@ -22,6 +22,9 @@ const OrdersScreen: FC = () => {
 
   const { data, isLoading, error } = useOrdersQuery({ filterBy });
 
+  const hasBorderBottom = (index: number) =>
+    index === data?.data?.length! - 1 || data?.data.length === 1;
+
   const handleClick = ({ target }: MouseEvent<HTMLButtonElement>) => {
     const { value, name } = target as HTMLButtonElement;
 
@@ -31,23 +34,32 @@ const OrdersScreen: FC = () => {
     }));
   };
 
-  const renderOrder = (order: ORDER) => (
-    <OrderLineItem order={order} key={order.id} />
+  const renderOrder = (order: ORDER, index: number) => (
+    <OrderLineItem
+      hasBorderBottom={hasBorderBottom(index)}
+      order={order}
+      key={order.id}
+    />
   );
 
   const renderOrders = () => data?.data.map(renderOrder);
 
+  const renderSkeleton = (index: number) => (
+    <SkeletonOrderLineItem key={index} />
+  );
+
   const renderSkeletons = () =>
-    Array.from(Array(10).keys()).map((number) => (
-      <SkeletonOrderLineItem key={number} />
-    ));
+    Array.from(Array(10).keys()).map(renderSkeleton);
+
+  const renderNoResults = () => <Text type="h2">No Results</Text>;
 
   const renderContent = () => {
     if (isLoading) return renderSkeletons();
+    if (!data?.data?.length) return renderNoResults();
     return renderOrders();
   };
 
-  if (!!error) return <div>oeps!</div>;
+  if (!!error) return <Text>Something went wrong!</Text>;
 
   return (
     <Container>
@@ -58,7 +70,7 @@ const OrdersScreen: FC = () => {
           </Text>
         </Column>
       </Columns>
-      <Columns>
+      <Columns className="flex flex-row justify-center">
         <Column columnWidth={COLUMNS.SMALL}>
           <StatusDropdown
             value={filterBy.status as string}

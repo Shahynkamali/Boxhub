@@ -14,43 +14,37 @@ import { FilterOptions } from "@/app/screens/OrdersScreen/useOrdersQuery";
 
 const BASE_URL_ORDERS = `/mock-api/${API_RESOURCE.ORDERS}*`;
 
-const filterBoxes = (filters: FilterOptions) => {
-  return ORDERS.filter(({ status, size, condition, type }) => {
-    return (
+const filterBoxes = (filters: FilterOptions) =>
+  ORDERS.filter(
+    ({ status, size, condition, type }) =>
       matchesFilter(filters.status, status) &&
       matchesFilter(filters.size, size) &&
       matchesFilter(filters.condition, condition) &&
       matchesFilter(filters.type, type)
-    );
-  });
-};
+  );
 
-function matchesFilter(filter: string | "all" | undefined, value: string) {
-  return filter === "all" || !filter || filter === value;
-}
+const matchesFilter = (filter: string | "all" | undefined, value: string) =>
+  filter === "all" || !filter || filter === value;
 
-const getOrders = rest.get(
-  BASE_URL_ORDERS,
-  ({ url }, _resolver, { status, json }) => {
-    const statusParam = url.searchParams.get("status") as StatusTypes;
-    const conditionParam = url.searchParams.get("condition") as ConditionTypes;
-    const typeParam = url.searchParams.get("type") as ContainerType;
-    const sizeParam = url.searchParams.get("size") as SizeTypes;
+const getOrders = rest.get(BASE_URL_ORDERS, ({ url }, _, { status, json }) => {
+  const statusParam = url.searchParams.get("status") as StatusTypes;
+  const conditionParam = url.searchParams.get("condition") as ConditionTypes;
+  const typeParam = url.searchParams.get("type") as ContainerType;
+  const sizeParam = url.searchParams.get("size") as SizeTypes;
 
-    return delayedResponse(
-      status(200),
-      json({
-        data: sortByCreationDate<ORDER>([
-          ...filterBoxes({
-            status: statusParam,
-            condition: conditionParam,
-            size: sizeParam,
-            type: typeParam,
-          }),
-        ]),
-      })
-    );
-  }
-);
+  return delayedResponse(
+    status(200),
+    json({
+      data: sortByCreationDate<ORDER>([
+        ...filterBoxes({
+          status: statusParam,
+          condition: conditionParam,
+          size: sizeParam,
+          type: typeParam,
+        }),
+      ]),
+    })
+  );
+});
 
 export { getOrders };
