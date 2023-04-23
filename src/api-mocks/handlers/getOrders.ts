@@ -1,7 +1,8 @@
 import { rest } from "msw";
 import { API_RESOURCE } from "constant";
 import { delayedResponse } from "mocks/utils";
-import { ORDERS } from "mocks/fixtures";
+import { ORDER, ORDERS } from "mocks/fixtures";
+import { sortByCreationDate } from "@/app/shared/utilities/sortByCreationDate";
 
 const BASE_URL_ORDERS = `/mock-api/${API_RESOURCE.ORDERS}*`;
 
@@ -11,7 +12,7 @@ const getOrders = rest.get(
     return delayedResponse(
       status(200),
       json({
-        data: ORDERS,
+        data: sortByCreationDate<ORDER>([...ORDERS]),
       })
     );
   }

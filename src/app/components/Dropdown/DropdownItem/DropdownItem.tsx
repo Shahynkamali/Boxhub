@@ -10,6 +10,7 @@ import { Text } from "@/app/components/Text";
 import { useDropdownContext } from "@/app/components/Dropdown/useDropdownContext";
 import classnames from "classnames";
 import styles from "./DropdownItem.module.scss";
+import { rest } from "msw";
 
 interface DropdownItemProps<T = HTMLProps<HTMLAnchorElement>>
   extends HTMLProps<T> {
@@ -34,6 +35,7 @@ const DropdownItem: FC<Props> = ({
   isDisabled,
   className,
   isError,
+  name,
   ...rest
 }) => {
   const { selected, setSelected, toggleIsOpen } = useDropdownContext();
@@ -98,20 +100,14 @@ const DropdownItem: FC<Props> = ({
     return (
       <button
         {...rest}
+        name={name}
         type="button"
         className={getCSS(active)}
         onClick={handleClick}
         value={value}
       >
-        <Text
-          role="option"
-          aria-selected={isSelected}
-          className={styles.center}
-          isMarginless
-        >
-          {children ? children : value}
-          {renderIcon()}
-        </Text>
+        {children ? children : value}
+        {renderIcon()}
         {renderCheckmark()}
       </button>
     );
@@ -138,3 +134,4 @@ const DropdownItem: FC<Props> = ({
 };
 
 export { DropdownItem };
+export type { Props as DropdownItemProps };

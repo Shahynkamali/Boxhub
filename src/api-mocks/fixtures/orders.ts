@@ -283,4 +283,15 @@ export const ORDERS = [
   },
 ] as const;
 
+type GenericOption = "all";
+
 export type ORDER = (typeof ORDERS)[number];
+export type OrderProperties = Pick<
+  ORDER,
+  "condition" | "status" | "type" | "size"
+>;
+export type OrderKeys = keyof OrderProperties;
+export type SizeTypes = OrderProperties["size"] | GenericOption;
+export type StatusTypes = OrderProperties["status"] | GenericOption;
+export type ConditionTypes = OrderProperties["condition"] | GenericOption;
+export type ContainerType = OrderProperties["type"] | GenericOption;

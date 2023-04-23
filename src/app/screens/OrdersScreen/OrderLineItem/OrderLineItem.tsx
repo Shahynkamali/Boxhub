@@ -42,7 +42,9 @@ const OrderLineItem: FC<Props> = ({ order }) => {
             <Text isMarginless isBold type={TEXTS.H2}>
               {order.customer}
             </Text>
-            <Text type={TEXTS.FOOTNOTE}>Ordered: {order.created}</Text>
+            <Text type={TEXTS.FOOTNOTE}>
+              Ordered: {new Date(order.created).toLocaleDateString()}
+            </Text>
             <Badge
               className={styles.orderStatus}
               theme={mapOrderStatus[order.status]}

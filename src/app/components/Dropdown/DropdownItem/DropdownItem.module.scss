@@ -1,5 +1,5 @@
 .root {
-  @apply w-full cursor-pointer text-left flex justify-between items-center text-black p-2;
+  @apply w-full cursor-pointer text-left flex justify-between items-center text-secondary p-2 font-bold;
 
   &.active {
     @apply bg-secondary text-white;

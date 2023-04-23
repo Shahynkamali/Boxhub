@@ -1,8 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
 import type { MouseEvent } from "react";
-
 import { useState } from "react";
-
 import { Dropdown } from "./Dropdown";
 import { DropdownButton } from "./DropdownButton";
 import { DropdownItems } from "./DropdownItems";
@@ -12,12 +10,7 @@ import { DropdownDivider } from "./DropdownDivider";
 import { DropdownLabel } from "./DropdownLabel";
 import { DropdownContent } from "./DropdownContent";
 import { Text } from "@/app/components/Text";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faLink,
-  faExclamationCircle,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { BUTTONS } from "@/app/shared/constant";
 
 export default {
