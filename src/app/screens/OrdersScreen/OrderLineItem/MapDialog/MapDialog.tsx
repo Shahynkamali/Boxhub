@@ -1,14 +1,16 @@
-import { FC, useEffect, useState } from "react";
+import type { FC } from "react";
+
+import { useEffect, useState } from "react";
 import {
   GoogleMap,
   MarkerF,
   useLoadScript,
   InfoWindowF,
 } from "@react-google-maps/api";
-import { Button, ModalProps } from "components";
-import { Dialog, DialogContent, DialogFooter, DialogHeader } from "components";
 import Geocode from "react-geocode";
-import styles from "./map.module.scss";
+import type { ModalProps } from "components";
+import { Dialog, DialogContent, DialogHeader, Text } from "components";
+import styles from "./MapDialog.module.scss";
 
 interface Props extends Pick<ModalProps, "isOpen"> {
   onClose: () => void;
@@ -24,7 +26,7 @@ const MapDialog: FC<Props> = ({
   originAddress,
   shippingAddress,
 }) => {
-  const [mapRef, setMapRef] = useState<any>();
+  const [mapRef, setMapRef] = useState<google.maps.Map>();
   const [isWindowOpen, setIsWindowOpen] = useState(false);
   const [infoWindowData, setInfoWindowData] = useState({ id: 1, address: "" });
   const { isLoaded } = useLoadScript({ googleMapsApiKey });
@@ -72,52 +74,49 @@ const MapDialog: FC<Props> = ({
 
   const markers = [originCordination, shippingCordination];
 
-  const onMapLoad = (map: any) => {
+  const onMapLoad = (map: google.maps.Map) => {
     setMapRef(map);
     const bounds = new google.maps.LatLngBounds();
     markers?.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
     map.fitBounds(bounds);
   };
+
+  const renderMarkers = () =>
+    markers.map(({ lat, lng, address }, index) => (
+      <MarkerF
+        onClick={() => handleMarkerClick(index, lat, lng, address)}
+        key={index}
+        position={{ lat, lng }}
+      >
+        {isWindowOpen && infoWindowData?.id === index && (
+          <InfoWindowF
+            position={{ lat, lng }}
+            onCloseClick={() => setIsWindowOpen(false)}
+          >
+            <Text>{infoWindowData.address}</Text>
+          </InfoWindowF>
+        )}
+      </MarkerF>
+    ));
+
+  const renderMap = () =>
+    isLoaded ? (
+      <GoogleMap
+        onClick={() => setIsWindowOpen(false)}
+        mapContainerClassName={styles.map}
+        onLoad={onMapLoad}
+      >
+        {renderMarkers()}
+      </GoogleMap>
+    ) : (
+      <Text>Loading..</Text>
+    );
   return (
     <Dialog onClose={onClose} isOpen={isOpen}>
-      <DialogHeader onClose={onClose}>Map</DialogHeader>
-      <DialogContent>
-        {!isLoaded ? (
-          <h1>Loading...</h1>
-        ) : (
-          <GoogleMap
-            onClick={() => setIsWindowOpen(false)}
-            mapContainerClassName={styles.map}
-            onLoad={onMapLoad}
-          >
-            {markers.map(({ lat, lng, address }, index) => (
-              <MarkerF
-                onClick={() => {
-                  handleMarkerClick(index, lat, lng, address);
-                }}
-                key={index}
-                position={{ lat, lng }}
-              >
-                {isWindowOpen && infoWindowData?.id === index && (
-                  <InfoWindowF
-                    position={{ lat, lng }}
-                    onCloseClick={() => {
-                      setIsWindowOpen(false);
-                    }}
-                  >
-                    <h3>{infoWindowData.address}</h3>
-                  </InfoWindowF>
-                )}
-              </MarkerF>
-            ))}
-          </GoogleMap>
-        )}
-      </DialogContent>
-      <DialogFooter>
-        <Button isOutlined onClick={onClose}>
-          Close
-        </Button>
-      </DialogFooter>
+      <DialogHeader onClose={onClose}>
+        <Text type="h2">Shipping Map</Text>
+      </DialogHeader>
+      <DialogContent>{renderMap()}</DialogContent>
     </Dialog>
   );
 };
