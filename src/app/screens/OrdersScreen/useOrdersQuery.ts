@@ -60,7 +60,7 @@ const useOrdersQuery = ({ filterBy }: Options) => {
     setState({ isLoading: true });
 
     fetchOrders();
-  }, []);
+  }, [filterBy]);
 
   const value = useMemo(() => state, [state]);
 

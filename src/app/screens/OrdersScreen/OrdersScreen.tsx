@@ -4,12 +4,13 @@ import type { FilterOptions } from "./useOrdersQuery";
 import { useState } from "react";
 import { useOrdersQuery } from "./useOrdersQuery";
 import { Box, Column, Columns, Container, Text } from "components";
-import { COLUMNS, TEXTS } from "@/app/shared/constant";
+import { COLUMNS, TEXTS } from "constant";
 import { OrderLineItem } from "./OrderLineItem";
 import { StatusDropdown } from "./StatusDropdown";
 import { SizeDropdown } from "./SizeDropdown";
 import { ConditionDropdown } from "./ConditionDropdown";
 import { TypeDropdown } from "./TypeDropdown";
+import { SkeletonOrderLineItem } from "./OrderLineItem/SkeletonLineItem";
 
 const OrdersScreen: FC = () => {
   const [filterBy, setFilterBy] = useState<FilterOptions>({
@@ -21,14 +22,6 @@ const OrdersScreen: FC = () => {
 
   const { data, isLoading, error } = useOrdersQuery({ filterBy });
 
-  if (isLoading) return <div>loading...</div>;
-  if (!!error) return <div>oeps!</div>;
-
-  const renderOrder = (order: ORDER) => (
-    <OrderLineItem order={order} key={order.id} />
-  );
-  const renderOrders = () => data?.data.map(renderOrder);
-
   const handleClick = ({ target }: MouseEvent<HTMLButtonElement>) => {
     const { value, name } = target as HTMLButtonElement;
 
@@ -37,6 +30,24 @@ const OrdersScreen: FC = () => {
       [name]: value,
     }));
   };
+
+  const renderOrder = (order: ORDER) => (
+    <OrderLineItem order={order} key={order.id} />
+  );
+
+  const renderOrders = () => data?.data.map(renderOrder);
+
+  const renderSkeletons = () =>
+    Array.from(Array(10).keys()).map((number) => (
+      <SkeletonOrderLineItem key={number} />
+    ));
+
+  const renderContent = () => {
+    if (isLoading) return renderSkeletons();
+    return renderOrders();
+  };
+
+  if (!!error) return <div>oeps!</div>;
 
   return (
     <Container>
@@ -67,7 +78,7 @@ const OrdersScreen: FC = () => {
           <TypeDropdown value={filterBy.type as string} onClick={handleClick} />
         </Column>
       </Columns>
-      <Box>{renderOrders()}</Box>
+      <Box>{renderContent()}</Box>
     </Container>
   );
 };
