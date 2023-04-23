@@ -71,7 +71,6 @@ const useTailwindBreakpoints = () => {
   ) as Array<TailwindBreakpoint>;
 
   const breakpoints = breakpointKeys.reduce((map: any, breakpoint) => {
-    console.log(map);
     map[breakpoint] = getBreakpoint(width, breakpoint);
     return map;
   }, {}) as BreakPointResultsMap;

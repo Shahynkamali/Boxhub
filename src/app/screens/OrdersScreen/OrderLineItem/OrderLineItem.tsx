@@ -28,7 +28,18 @@ const mapOrderStatus = {
 const fallBackImage = "https://source.unsplash.com/random/50×50/?container";
 
 const OrderLineItem: FC<Props> = ({
-  order: { status, photo, type, customer, created, condition, sku, size },
+  order: {
+    status,
+    photo,
+    type,
+    customer,
+    created,
+    condition,
+    sku,
+    size,
+    origin_address,
+    shipping_address,
+  },
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -102,7 +113,12 @@ const OrderLineItem: FC<Props> = ({
           </Columns>
         </AccordionContent>
       </Accordion>
-      <MapDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <MapDialog
+        originAddress={origin_address}
+        shippingAddress={shipping_address}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   );
 };
