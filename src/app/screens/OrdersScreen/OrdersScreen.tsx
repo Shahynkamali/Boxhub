@@ -52,10 +52,10 @@ const OrdersScreen: FC = () => {
     return renderOrders();
   };
 
-  if (!!error) return <Text>Something went wrong!</Text>;
+  if (!!error) return <Text type={TEXTS.H2}>Something went wrong!</Text>;
 
   return (
-    <Container>
+    <Container className="mt-8">
       <Columns>
         <Column columnWidth={COLUMNS.SIX}>
           <Text className="text-center" type={TEXTS.H1}>
@@ -83,7 +83,9 @@ const OrdersScreen: FC = () => {
           <TypeDropdown value={filterBy.type as string} onClick={handleClick} />
         </Column>
       </Columns>
-      <Box>{renderContent()}</Box>
+      <Box className=" h-full max-h-[44rem] overflow-y-auto">
+        {renderContent()}
+      </Box>
     </Container>
   );
 };

@@ -7,7 +7,7 @@ describe("App", () => {
   test("renders", async () => {
     renderWithProviders(<App />);
 
-    await waitForLoading("loading");
+    await waitForLoading();
 
     expect(screen.getByText("Orders")).toBeInTheDocument();
   });

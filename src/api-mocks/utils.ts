@@ -1,6 +1,6 @@
 import type { FilterOptions } from "@/app/screens/OrdersScreen/useOrdersQuery";
 import { context, createResponseComposition } from "msw";
-import { ORDERS } from "./fixtures";
+import { ORDER, ORDERS } from "./fixtures";
 
 export const delayedResponse = createResponseComposition(
   undefined,
@@ -25,9 +25,7 @@ interface CreatedType<T> {
   created: string;
 }
 
-export const sortByCreationDate = <T extends CreatedType<T>>(
-  values: CreatedType<T>[]
-) =>
+export const sortByCreationDate = <T extends CreatedType<T>>(values: ORDER[]) =>
   values.sort(
     (a, b) => Number(new Date(a.created)) - Number(new Date(b.created))
   );

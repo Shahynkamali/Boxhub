@@ -107,6 +107,7 @@ const DropdownItem: FC<Props> = ({
         value={value}
       >
         {children ? children : value}
+
         {renderIcon()}
         {renderCheckmark()}
       </button>

@@ -55,7 +55,12 @@ const OrderLineItem: FC<Props> = ({
 
   return (
     <>
-      <Accordion hasBorderBottom isOpen={isOpen} setIsOpen={handleSetIsOpen}>
+      <Accordion
+        data-testid="line-item"
+        hasBorderBottom
+        isOpen={isOpen}
+        setIsOpen={handleSetIsOpen}
+      >
         <AccordionHeader>
           <Columns>
             <Column columnWidth={COLUMNS.ONE}>

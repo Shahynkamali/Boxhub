@@ -27,6 +27,7 @@ const Accordion: FC<Props> = ({
   className,
   hasBorderTop,
   hasBorderBottom,
+  ...rest
 }) => {
   const controls = useAnimation();
   const { start } = controls;
@@ -43,6 +44,7 @@ const Accordion: FC<Props> = ({
         hasBorderBottom && styles.borderBottom,
         className
       )}
+      {...rest}
     >
       {Children.map(children, (child) =>
         isValidElement<AccordionChild>(child)

@@ -19,7 +19,6 @@ const SkeletonOrderLineItem: FC = () => {
             <div className="h-48 w-full">
               <Skeleton width="full" height="full" />
             </div>
-            ``
           </Column>
           <Column className={styles.title}>
             <Skeleton width="small" height="medium" />

@@ -18,5 +18,5 @@ const DefaultTestProviders = ({ children }: DefaultTestProvidersProps) => (
 export const renderWithProviders = (ui: ReactElement) =>
   render(<DefaultTestProviders>{ui}</DefaultTestProviders>);
 
-export const waitForLoading = async (loadingText = "Fetching") =>
-  waitForElementToBeRemoved(() => screen.getByText(`${loadingText}...`));
+export const waitForLoading = async () =>
+  waitForElementToBeRemoved(() => screen.getAllByTestId("skeleton"));
