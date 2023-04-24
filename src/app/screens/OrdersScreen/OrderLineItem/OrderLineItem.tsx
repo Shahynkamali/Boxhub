@@ -74,6 +74,7 @@ const OrderLineItem: FC<Props> = ({
                 Ordered: {new Date(created).toLocaleDateString()}
               </Text>
               <Badge
+                name={status}
                 className={styles.orderStatus}
                 theme={mapOrderStatus[status]}
               >
@@ -93,13 +94,17 @@ const OrderLineItem: FC<Props> = ({
               <Text isBold type="h5">
                 Condition:
               </Text>
-              <Text className="ml-4">{condition}</Text>
+              <Text data-testid="condition" className="ml-4">
+                {condition}
+              </Text>
             </Column>
             <Column className={styles.textContainer}>
               <Text isBold type="h5">
                 Type:
               </Text>
-              <Text className="ml-4">{type}</Text>
+              <Text data-testid="type" className="ml-4">
+                {type}
+              </Text>
             </Column>
           </Columns>
           <Columns isMarginless>
@@ -113,7 +118,9 @@ const OrderLineItem: FC<Props> = ({
               <Text isBold type="h5">
                 Size:
               </Text>
-              <Text className="ml-4">{size}</Text>
+              <Text data-testid="size" className="ml-4">
+                {size}
+              </Text>
             </Column>
           </Columns>
         </AccordionContent>

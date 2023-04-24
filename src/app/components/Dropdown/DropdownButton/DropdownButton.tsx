@@ -19,7 +19,7 @@ interface DropdownButtonProps extends ComponentPropsWithRef<"button"> {
 type Props = AtLeast<DropdownButtonProps, "children">;
 
 const DropdownButton: FC<Props> = forwardRef(
-  ({ children, isIconVisible, icon, className, ...rest }, ref) => {
+  ({ children, isIconVisible, icon, className, name, ...rest }, ref) => {
     const { isDisabled, toggleIsOpen, theme, isFullWidth, isOutlined } =
       useDropdownContext();
 
@@ -41,6 +41,8 @@ const DropdownButton: FC<Props> = forwardRef(
     return (
       <Menu.Button
         {...rest}
+        aria-label={name}
+        name={name}
         ref={ref}
         type="button"
         tabIndex={0}

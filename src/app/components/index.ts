@@ -9,6 +9,5 @@ export * from "./Dialog";
 export * from "./Dropdown";
 export * from "./Modal";
 export * from "./Image";
-export * from "./ProgressBar";
 export * from "./Skeleton";
 export * from "./Text";

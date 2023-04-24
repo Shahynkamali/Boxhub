@@ -17,7 +17,7 @@ const StatusDropdown: FC<Props> = ({ value, onClick }) => {
     <Dropdown value={value}>
       <DropdownLabel>Status</DropdownLabel>
       <DropdownContent>
-        <DropdownButton>{value}</DropdownButton>
+        <DropdownButton name="Status">{value}</DropdownButton>
         <DropdownItems>
           <DropdownItem name="status" onClick={onClick} value="all" />
           <DropdownItem name="status" onClick={onClick} value="delivered" />

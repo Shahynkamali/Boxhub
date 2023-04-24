@@ -15,6 +15,7 @@ const Badge: FC<Props> = ({
   invertTheme,
   children,
   className,
+  name,
   ...rest
 }) => {
   const css = classNames(
@@ -25,7 +26,7 @@ const Badge: FC<Props> = ({
   );
 
   return (
-    <span {...rest} className={css} aria-hidden="true">
+    <span aria-label={name} role="status" {...rest} className={css}>
       {children}
     </span>
   );
