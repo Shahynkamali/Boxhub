@@ -25,7 +25,9 @@ interface CreatedType<T> {
   created: string;
 }
 
-export const sortByCreationDate = <T extends CreatedType<T>>(values: ORDER[]) =>
+export const sortByCreationDate = <T extends CreatedType<T>>(
+  values: T[]
+): T[] =>
   values.sort(
     (a, b) => Number(new Date(a.created)) - Number(new Date(b.created))
   );

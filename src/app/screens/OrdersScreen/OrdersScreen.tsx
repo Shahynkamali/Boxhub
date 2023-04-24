@@ -11,6 +11,7 @@ import { SizeDropdown } from "./SizeDropdown";
 import { ConditionDropdown } from "./ConditionDropdown";
 import { TypeDropdown } from "./TypeDropdown";
 import { SkeletonOrderLineItem } from "./OrderLineItem/SkeletonLineItem";
+import styles from "./OrdersScreen.module.scss";
 
 const OrdersScreen: FC = () => {
   const [filterBy, setFilterBy] = useState<FilterOptions>({
@@ -55,15 +56,15 @@ const OrdersScreen: FC = () => {
   if (!!error) return <Text type={TEXTS.H2}>Something went wrong!</Text>;
 
   return (
-    <Container className="mt-8">
+    <Container>
       <Columns>
         <Column columnWidth={COLUMNS.SIX}>
-          <Text className="text-center" type={TEXTS.H1}>
+          <Text className="text-center m-8" type={TEXTS.H1}>
             Orders
           </Text>
         </Column>
       </Columns>
-      <Columns className="flex flex-row justify-center">
+      <Columns className={styles.wrapper}>
         <Column columnWidth={COLUMNS.SMALL}>
           <StatusDropdown
             value={filterBy.status as string}
@@ -83,9 +84,7 @@ const OrdersScreen: FC = () => {
           <TypeDropdown value={filterBy.type as string} onClick={handleClick} />
         </Column>
       </Columns>
-      <Box className=" h-full max-h-[44rem] overflow-y-auto">
-        {renderContent()}
-      </Box>
+      <Box className={styles.box}>{renderContent()}</Box>
     </Container>
   );
 };

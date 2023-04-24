@@ -1,0 +1,7 @@
+.wrapper {
+  @apply flex flex-col justify-center md:flex-row items-center;
+}
+
+.box {
+  @apply h-full max-h-[46rem] overflow-y-auto;
+}
