@@ -45,3 +45,5 @@ yarn storybook
 - If for some reason the map does not render, try adding a new API Key in the env file. (Limit might be hit)
 
 - Components in the `components` folder are components that I have build for personal projects. Only used components that i needed and adjusted them for this application
+
+- Images url's did not work, returned 404 so i replaced them with a fallback
