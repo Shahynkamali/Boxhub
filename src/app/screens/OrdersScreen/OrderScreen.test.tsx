@@ -77,7 +77,7 @@ describe("OrdersScreen", () => {
 
   describe("Filters orders by status", () => {
     test.each(["pending", "delivered", "in-progress", "pending"])(
-      "should sort the list based on status",
+      "should sort the list based on %s",
       async (status) => {
         server.use(
           rest.get(getOrders.info.path, (_, response, { json }) => {
@@ -106,7 +106,7 @@ describe("OrdersScreen", () => {
 
   describe("Filters orders by status", () => {
     test.each(["pending", "delivered", "in-progress", "pending"])(
-      "should render the list based on status",
+      "should render the list based on %s",
       async (status) => {
         server.use(
           rest.get(getOrders.info.path, (_, response, { json }) => {
@@ -136,7 +136,7 @@ describe("OrdersScreen", () => {
 
   describe("Filters orders by size", () => {
     test.each(["20ft", "40ft", "45ft"])(
-      "should render the list based on size",
+      "should render the list based on %s",
       async (size) => {
         server.use(
           rest.get(getOrders.info.path, (_, response, { json }) => {
@@ -166,7 +166,7 @@ describe("OrdersScreen", () => {
 
   describe("Filters orders by Condition", () => {
     test.each(["new", "cargo-worthy", "wind-watertight"])(
-      "should render the list based on condition",
+      "should render the list based on %s",
       async (condition) => {
         server.use(
           rest.get(getOrders.info.path, (_, response, { json }) => {
@@ -196,7 +196,7 @@ describe("OrdersScreen", () => {
 
   describe("Filters orders by Type", () => {
     test.each(["standard", "high-cube"])(
-      "should render the list based on size",
+      "should render the list based on %s",
       async (type) => {
         server.use(
           rest.get(getOrders.info.path, (_, response, { json }) => {
