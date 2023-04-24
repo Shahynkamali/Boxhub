@@ -65,10 +65,7 @@ const Dropdown: FC<Props> = ({
     onClickOutside,
   });
 
-  const toggleIsOpen = () => {
-    console.log("hah");
-    return setIsOpen((prevState) => !prevState);
-  };
+  const toggleIsOpen = () => setIsOpen((prevState) => !prevState);
 
   return (
     <DropdownContext.Provider
