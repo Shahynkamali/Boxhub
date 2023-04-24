@@ -1,3 +1,10 @@
+import type {
+  ConditionTypes,
+  ContainerType,
+  ORDER,
+  SizeTypes,
+  StatusTypes,
+} from "@/api-mocks/fixtures";
 import { screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 import { rest } from "msw";
@@ -5,14 +12,7 @@ import { server } from "mocks/server";
 import { getOrders } from "@/api-mocks/handlers/getOrders";
 import { renderWithProviders, waitForLoading } from "utilities";
 import { OrdersScreen } from "./OrdersScreen";
-import {
-  ConditionTypes,
-  ContainerType,
-  ORDER,
-  ORDERS,
-  SizeTypes,
-  StatusTypes,
-} from "@/api-mocks/fixtures";
+import { ORDERS } from "@/api-mocks/fixtures";
 import { filterOrders, sortByCreationDate } from "mocks/utils";
 
 const renderOrders = async () => {
@@ -35,6 +35,7 @@ describe("OrdersScreen", () => {
           networkError("Failure")
         )
       );
+
       await renderOrders();
 
       expect(
@@ -123,6 +124,7 @@ describe("OrdersScreen", () => {
             );
           })
         );
+
         await renderOrders();
 
         screen
@@ -152,6 +154,7 @@ describe("OrdersScreen", () => {
             );
           })
         );
+
         await renderOrders();
 
         screen
@@ -181,6 +184,7 @@ describe("OrdersScreen", () => {
             );
           })
         );
+
         await renderOrders();
 
         screen
@@ -210,6 +214,7 @@ describe("OrdersScreen", () => {
             );
           })
         );
+
         await renderOrders();
 
         screen
