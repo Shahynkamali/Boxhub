@@ -32,6 +32,14 @@ yarn test:coverage # Generates a coverage report
 - The application uses [MSW](https://mswjs.io/) to mock api calls.
 - The api mocking is handled in `src/api-mocks`.
 
+## Storybook
+
+- The application uses [Storybook](https://storybook.js.org/) to document components, these can be viewed by running
+
+```bash
+yarn storybook
+```
+
 ## Comments
 
 - If for some reason the map does not render, try adding a new API Key in the env file. (Limit might be hit)
