@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+
 import { server } from "./src/api-mocks/server";
 
 window.ResizeObserver = vi.fn().mockImplementation(() => ({
